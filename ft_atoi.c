@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkantara <zkantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 19:34:19 by zkantara          #+#    #+#             */
-/*   Updated: 2023/03/06 00:44:46 by zkantara         ###   ########.fr       */
+/*   Created: 2022/11/09 13:57:20 by zkantara          #+#    #+#             */
+/*   Updated: 2023/01/03 21:49:55 by zkantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr_fd(char *s, int fd)
+int	ft_atoi(const char *str)
 {
 	int	i;
+	int	s;
+	int	r;
 
 	i = 0;
-	while (s[i] != '\0')
+	s = 1;
+	r = 0;
+	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
+		i++;
+	if (str[i] == '-')
 	{
-		write(fd, &s[i], 1);
+		s = -1;
 		i++;
 	}
-	return (i);
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		r = (r * 10) + (str[i] - '0');
+		i++;
+	}
+	return (r * s);
 }

@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zkantara <zkantara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 19:34:19 by zkantara          #+#    #+#             */
-/*   Updated: 2023/03/06 00:44:46 by zkantara         ###   ########.fr       */
+/*   Created: 2022/11/09 15:29:29 by zkantara          #+#    #+#             */
+/*   Updated: 2022/12/28 14:46:11 by zkantara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_putstr_fd(char *s, int fd)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int	i;
+	size_t	zaz_size;
+	void	*ziko;
 
-	i = 0;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-	return (i);
+	zaz_size = count * size;
+	if (size != 0 && zaz_size / size != count)
+		return (NULL);
+	ziko = malloc(zaz_size);
+	if (ziko == NULL)
+		return (NULL);
+	ft_memset(ziko, 0, zaz_size);
+	return (ziko);
 }
